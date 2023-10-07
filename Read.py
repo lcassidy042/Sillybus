@@ -40,7 +40,7 @@ def CreateNotebook(file_path):
         return
     elif not file_path.endswith('.txt'):
         print("what are you")
-    file = open(file_path)
+    else: file = open(file_path)
     lines = file.readlines()
     length = len(lines)
     i = 0
