@@ -18,7 +18,6 @@ def assigner(file_name):
     try:
         service = build('classroom', 'v1', credentials=creds)
         assignments = syllabus.assignments
-        materials = syllabus.materials
         for assignment in assignments:                
             coursework = {
                 'title': 'Ant colonies',
@@ -35,17 +34,6 @@ def assigner(file_name):
             }
             coursework = service.courses().courseWork().create(courseId=course['id'], body=coursework).execute()
             print(f"Assignment created with ID {coursework.get('id')}")
-        for material in materials:
-            coursework = {
-                date.
-                'title': material.name,
-                'workType': 'MATERIAL',
-                'state': 'PUBLISHED',
-                'dueDate': {"day": },
-                'dueTime': ''
-            }
-            coursework = service.courses().courseWork().create(courseId=course['id'], body=coursework).execute()
-            print(f"Material created with ID {coursework.get('id')}")
         return coursework
     except HttpError as error:
         print(f"An error occurred: {error}")
