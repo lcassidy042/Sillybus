@@ -9,6 +9,10 @@ This course will introduce students to the fundamentals of programming.
 
 Email: hackrueducation@gmail.com
 
+Materials:
+Textbook(Chapter 111), 9/23/23
+Textbook(All), 10/20
+
 Grade Categories:
 Quiz 25%
 Test 50%
