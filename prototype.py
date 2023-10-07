@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/classroom.courses.readonly']
+SCOPES = ['https://www.googleapis.com/auth/classroom.courses']
 
 
 def main():
@@ -20,7 +20,7 @@ def main():
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
-    # time.
+    # time
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     # If there are no (valid) credentials available, let the user log in.
@@ -50,7 +50,7 @@ def main():
             for course in courses:
                 tuples.append((course['name'], course))
             courseList = inquirer.List('course',message="What course do you need?",choices=tuples)
-            courseSelected = inquirer.prompt([courseList])['course']
+            course = inquirer.prompt([courseList])['course']
         elif create_or_use['create_or_use'] == "Create a Course":
             #Prompts the user to create a course from their list
             questions = [
@@ -65,7 +65,7 @@ def main():
             print(course)
             course = service.courses().create(body=course).execute()
             print(f"Course created:  {(course.get('name'), course.get('id'))}")
-        return courseSelected
+        return course
     except HttpError as error:
         print('An error occurred: %s' % error)
 
