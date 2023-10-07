@@ -11,7 +11,7 @@ from googleapiclient.errors import HttpError
 # pylint: disable=maybe-no-member
 def assigner(file_name):
     syllabus = Read.CreateNotebook(file_name) 
-    course = menu()
+    course = menu.main()
     creds, _ = google.auth.default()
     try:
         service = build('classroom', 'v1', credentials=creds)
@@ -40,7 +40,7 @@ def assigner(file_name):
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("Usage: python script_name.py source_pdf_file.pdf")
+        print("Usage: python assigner.py source_pdf_file.pdf")
         sys.exit(1)
     source = sys.argv[1]
     assigner(source)
