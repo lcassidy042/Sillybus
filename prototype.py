@@ -42,18 +42,17 @@ def main():
         results = service.courses().list(pageSize=10).execute()
         courses = results.get('courses', [])
         if create_or_use['create_or_use'] == "Use Existing Course": 
+            #Prompts the user to select a course from their list and saves the API course object to courseSelected.
             if not courses:
                 print('No courses found.')
                 return
-            # Prints the names of the first 10 courses.
-            courseNames = []
-            courseIds = []
-            for course in courses: 
-                courseNames.append(course['name'])
-                courseIds.append(course['id'])
-            courseSelected = inquirer.prompt([inquirer.List('course',message="What course do you need?",choices=courseNames)])
-            service.courses.get(id=courses['name'==courseSelected['courseSelected']]).execute() 
+            tuples = []
+            for course in courses:
+                tuples.append((course['name'], course))
+            courseList = inquirer.List('course',message="What course do you need?",choices=tuples)
+            courseSelected = inquirer.prompt([courseList])['course']
         elif create_or_use['create_or_use'] == "Create a Course":
+            #Prompts the user to create a course from their list
             print("To be continued")
     except HttpError as error:
         print('An error occurred: %s' % error)
