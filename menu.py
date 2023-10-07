@@ -1,8 +1,7 @@
 from __future__ import print_function
-
 import os.path
-import inquirer
-
+import inquirer #Asks questions
+#Google API
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -10,17 +9,13 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/classroom.courses.readonly']
-
+SCOPES = ['https://www.googleapis.com/auth/classroom.courses']
 
 def main():
-    """Shows basic usage of the Classroom API.
-    Prints the names of the first 10 courses the user has access to.
-    """
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
-    # time.
+    # time
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     # If there are no (valid) credentials available, let the user log in.
@@ -34,7 +29,6 @@ def main():
         # Save the credentials for the next run
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
-
     try:
         service = build('classroom', 'v1', credentials=creds)
         create_or_use = inquirer.prompt([inquirer.List('create_or_use',message="Create a Course or Use Existing Course?",choices=["Create a Course", "Use Existing Course"])])
@@ -42,7 +36,7 @@ def main():
         results = service.courses().list(pageSize=10).execute()
         courses = results.get('courses', [])
         if create_or_use['create_or_use'] == "Use Existing Course": 
-            #Prompts the user to select a course from their list and saves the API course object to courseSelected.
+            #Prompts the user to select a course from their list and saves the API course object to course.
             if not courses:
                 print('No courses found.')
                 return
@@ -50,9 +44,9 @@ def main():
             for course in courses:
                 tuples.append((course['name'], course))
             courseList = inquirer.List('course',message="What course do you need?",choices=tuples)
-            courseSelected = inquirer.prompt([courseList])['course']
+            course = inquirer.prompt([courseList])['course']
         elif create_or_use['create_or_use'] == "Create a Course":
-            #Prompts the user to create a course from their list
+            #Prompts the user to create a course with given specifications and saves the API course object to course
             questions = [
             inquirer.Text('name', message="Course Name?"),
             inquirer.Text('section', message="Section?"),
@@ -63,9 +57,9 @@ def main():
             answers = inquirer.prompt(questions)
             course = {**answers, 'ownerId': 'me', 'courseState': 'PROVISIONED'}
             print(course)
-            course = service.courses().create(body=course).execute()
+            course = service.courses().create(body=course).execute() #Create course in api
             print(f"Course created:  {(course.get('name'), course.get('id'))}")
-        return courseSelected
+        return course
     except HttpError as error:
         print('An error occurred: %s' % error)
 
