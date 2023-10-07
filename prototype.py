@@ -53,7 +53,19 @@ def main():
             courseSelected = inquirer.prompt([courseList])['course']
         elif create_or_use['create_or_use'] == "Create a Course":
             #Prompts the user to create a course from their list
-            print("To be continued")
+            questions = [
+            inquirer.Text('name', message="Course Name?"),
+            inquirer.Text('section', message="Section?"),
+            inquirer.Text('descriptionHeading', message="Heading Description?"),
+            inquirer.Text('description', message="Course Description?"),
+            inquirer.Text('room', message="Room Number?"),
+            ]
+            answers = inquirer.prompt(questions)
+            course = {**answers, 'ownerId': 'me', 'courseState': 'PROVISIONED'}
+            print(course)
+            course = service.courses().create(body=course).execute()
+            print(f"Course created:  {(course.get('name'), course.get('id'))}")
+        return courseSelected
     except HttpError as error:
         print('An error occurred: %s' % error)
 
