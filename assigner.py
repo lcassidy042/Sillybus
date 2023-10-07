@@ -17,20 +17,20 @@ def assigner(file_name):
     creds, _ = google.auth.default()
     try:
         service = build('classroom', 'v1', credentials=creds)
-        assignments = syllabus.assignments
-        for assignment in assignments:                
+        for assignment in syllabus.assignments:      
+            #split date here  
+            date_parts = [int(part) for part in assignment.Date.split('/')] 
             coursework = {
-                'title': 'Ant colonies',
-                'description': '''Read the article about ant colonies
-                                    and complete the quiz.''',
-                'materials': [
-                    {'link': {'url': 'http://example.com/ant-colonies'}},
-                    {'link': {'url': 'http://example.com/ant-quiz'}}
-                ],
+                'title': assignment.Name,
                 'workType': 'ASSIGNMENT',
                 'state': 'PUBLISHED',
-                'dueDate': '',
-                'dueTime': ''
+                'dueDate': {"year": date_parts[0],
+                            "month": date_parts[1],
+                            "day": date_parts[2]},
+                'dueTime': {"hours": 11,
+                            "minutes": 59,
+                            "seconds": 0,
+                            "nanos": 0}
             }
             coursework = service.courses().courseWork().create(courseId=course['id'], body=coursework).execute()
             print(f"Assignment created with ID {coursework.get('id')}")
