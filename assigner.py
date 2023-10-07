@@ -1,5 +1,7 @@
 from __future__ import print_function
 import sys
+import re
+import datetime
 import Read 
 import menu
 #Google API
@@ -35,16 +37,11 @@ def assigner(file_name):
             print(f"Assignment created with ID {coursework.get('id')}")
         for material in materials:
             coursework = {
-                'title': 'Ant colonies',
-                'description': '''Read the article about ant colonies
-                                    and complete the quiz.''',
-                'materials': [
-                    {'link': {'url': 'http://example.com/ant-colonies'}},
-                    {'link': {'url': 'http://example.com/ant-quiz'}}
-                ],
+                date.
+                'title': material.name,
                 'workType': 'MATERIAL',
                 'state': 'PUBLISHED',
-                'dueDate': '',
+                'dueDate': {"day": },
                 'dueTime': ''
             }
             coursework = service.courses().courseWork().create(courseId=course['id'], body=coursework).execute()
