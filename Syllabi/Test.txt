@@ -1,3 +1,6 @@
+Hey Class! This is your professor, Mrs. Muddled!
+I hope you guys are excited for our Class this semester.
+
 Course Name: Intro to Computer Science
 Course ID: 25
 
@@ -10,6 +13,7 @@ Grade Categories:
 Quiz 25%
 Test 50%
 Homework 25%
+
 Assignments:
 Quiz 1(Quiz), 9/10/23
 Quiz 2(Quiz), 9/30/23

@@ -1,5 +1,6 @@
 import Read
 
-def main(argv):
-    print(argv)
-    Read.CreateNotebook(argv[1])
+
+
+Class = Read.CreateNotebook("Syllabi/Test.txt")
+print(Class.Assignments[0].Type)
