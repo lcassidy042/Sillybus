@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os.path
+import inquirer
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -36,19 +37,24 @@ def main():
 
     try:
         service = build('classroom', 'v1', credentials=creds)
-
+        create_or_use = inquirer.prompt([inquirer.List('create_or_use',message="Create a Course or Use Existing Course?",choices=["Create a Course", "Use Existing Course"])])
         # Call the Classroom API
         results = service.courses().list(pageSize=10).execute()
         courses = results.get('courses', [])
-
-        if not courses:
-            print('No courses found.')
-            return
-        # Prints the names of the first 10 courses.
-        print('Courses:')
-        for course in courses:
-            print(course['name'])
-
+        if create_or_use['create_or_use'] == "Use Existing Course": 
+            if not courses:
+                print('No courses found.')
+                return
+            # Prints the names of the first 10 courses.
+            courseNames = []
+            courseIds = []
+            for course in courses: 
+                courseNames.append(course['name'])
+                courseIds.append(course['id'])
+            courseSelected = inquirer.prompt([inquirer.List('course',message="What course do you need?",choices=courseNames)])
+            service.courses.get(id=courses['name'==courseSelected['courseSelected']]).execute() 
+        elif create_or_use['create_or_use'] == "Create a Course":
+            print("To be continued")
     except HttpError as error:
         print('An error occurred: %s' % error)
 
