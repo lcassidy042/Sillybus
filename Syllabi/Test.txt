@@ -1,2 +1,15 @@
 Intro to Computer Science
 Syllabus
+
+Course Summary:
+Yadda yadda
+BLah Blah
+
+Grade Categories:
+Quiz 25%
+Test 50%
+Homework 25%
+
+Assignments:
+Quiz 1(Quiz), 9/10/23
+
