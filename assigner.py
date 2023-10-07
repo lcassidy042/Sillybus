@@ -27,7 +27,7 @@ def assigner(file_name):
                 'dueDate': {"year": date_parts[0],
                             "month": date_parts[1],
                             "day": date_parts[2]},
-                'dueTime': {"hours": 11,
+                'dueTime': {"hours": 23,
                             "minutes": 59,
                             "seconds": 0,
                             "nanos": 0}
