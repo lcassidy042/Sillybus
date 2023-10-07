@@ -1,7 +1,5 @@
 from __future__ import print_function
 import sys
-import re
-import datetime
 import Read 
 import menu
 #Google API
