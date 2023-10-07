@@ -2,7 +2,6 @@ import os
 import shutil
 import errno
 import subprocess
-import tempfile
 from tempfile import mkdtemp
 
 try:
@@ -60,7 +59,7 @@ def run(args):
         if e.errno == errno.ENOENT:
             # File not found.
             # This is equivalent to getting exitcode 127 from sh
-            raise exceptions.ShellError(
+            raise RuntimeError(
                 ' '.join(args), 127, '', '',
             )
 
@@ -70,7 +69,7 @@ def run(args):
 
     # if pipe is busted, raise an error (unlike Fabric)
     if pipe.returncode != 0:
-        raise exceptions.ShellError(
+        raise RuntimeError(
             ' '.join(args), pipe.returncode, stdout, stderr,
         )
 
@@ -128,4 +127,3 @@ else:
 
 count = convert(source, destination, count, 1)
 print(str(count) + ' file converted')
-
