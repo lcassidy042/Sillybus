@@ -1,17 +1,19 @@
 import docx2txt
+import sys
 
 
 def convertDocToTxt():
-    syllabus = docx2txt.process("/Users/jasonjasoon/Documents/Job Stuff/Resume (New 3, Jason Lei).docx")
+    filename = sys.argv[1]
+    syllabus = docx2txt.process(filename)
     #print(syllabus)
-    nolinebreaks = syllabus.split("\n")
+    remove_linebreaks = syllabus.split("\n")
     
-    nospaces = []
-    for word in nolinebreaks:
+    remove_spaces = []
+    for word in remove_linebreaks:
         if word == "":
             pass
         else:
-            nospaces.append(word)
+            remove_spaces.append(word)
     return syllabus
 
 #check if txt file input, return into txt file after parsing
@@ -23,9 +25,13 @@ def return_txt():
         file.write(parsed_text)
 
 def main():
+    if len(sys.argv) != 2:
+        print("Usage: python script_name.py source_docx_file.docx")
+        sys.exit(1)
     return_txt()
 
 if __name__ == '__main__':
+
     main()
 
 
