@@ -33,26 +33,11 @@ def main():
             token.write(creds.to_json())
     try:
         service = build('classroom', 'v1', credentials=creds)
-        create_or_use = inquirer.prompt([inquirer.List('create_or_use',message="Create a Course or Use Existing Course?",choices=["Create a Course", "Use Existing Course"])])
         # Call the Classroom API
-        results = service.courses().list(pageSize=10).execute()
-        courses = results.get('courses', [])
-        if create_or_use['create_or_use'] == "Use Existing Course":
-            #Prompts the user to select a course from their list and saves the API course object to course.
-            if not courses:
-                print('No courses found.')
-                return
-            tuples = []
-            for course in courses:
-                tuples.append((course['name'], course))
-            courseList = inquirer.List('course',message="What course do you need?",choices=tuples)
-            course = inquirer.prompt([courseList])['course']
-        elif create_or_use['create_or_use'] == "Create a Course":
-            #Prompts the user to create a course with given specifications and saves the API course object to course
-            course = {'name' : OurClass.CourseName, 'section': OurClass.CourseID, 'descriptionHeading' : "", 'description' : OurClass.Summary + OurClass.misc,'room' : OurClass.Room,  'ownerId' : 'me', 'courseState' : 'PROVISIONED'}
-            print(course)
-            course = service.courses().create(body=course).execute() #Create course in api
-            print(f"Course created:  {(course.get('name'), course.get('id'))}")
+        course = {'name' : OurClass.CourseName, 'section': OurClass.CourseID, 'descriptionHeading' : "", 'description' : OurClass.Summary + OurClass.misc,'room' : OurClass.Room,  'ownerId' : 'me', 'courseState' : 'PROVISIONED'}
+        #print(course)
+        course = service.courses().create(body=course).execute() #Create course in api
+        print(f"Course created:  {(course.get('name'), course.get('id'))}")
         return course
     except HttpError as error:
         print('An error occurred: %s' % error)
