@@ -1,4 +1,5 @@
 import re
+from pdfminer.high_level import extract_text
 
 class Assignment:
     def __init__(self, Name, Type, Date,):
@@ -27,12 +28,20 @@ patterns = [r'Course Name:\s*(.*)', r'Syllabus\s*(.*)', r'Course ID:\s*(.*)', r'
 
 def CreateNotebook(file_path):
     if file_path.endswith('.pdf'):
-        print("need to convert")
-        return
+        text = extract_text(file_path)
+        remove_linebreaks = text.split("\n")
+        remove_spaces = ""
+        counter = 0
+        for word in remove_linebreaks:
+            counter += 1
+            remove_spaces += word.strip()
+            if counter %2 == 0:
+                remove_spaces += '\n'
+        with open('uploads\converted_pdf.txt', 'w') as file: 
+            file.write(remove_spaces)
+        file = open('uploads\converted_pdf.txt')
     elif file_path.endswith(('.docx')):
-        print("need to convert")
-        file = open(file_path)
-
+        print('todo:docx')
     elif not file_path.endswith('.txt'):
         print("what are you")
     else: file = open(file_path)
