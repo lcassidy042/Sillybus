@@ -1,6 +1,5 @@
 from __future__ import print_function
 import os.path
-import inquirer #Asks questions
 import Read
 #Google API
 from google.auth.transport.requests import Request
@@ -10,32 +9,33 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/classroom.courses']
+SCOPES = ['https://www.googleapis.com/auth/classroom.courses', 'https://www.googleapis.com/auth/classroom.coursework.students']
 
-def main():
-    creds = None
+def main(service):
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time
     OurClass = Read.CreateNotebook("Syllabi/Test.txt")
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
-    # If there are no (valid) credentials available, let the user log in.
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
+    # if os.path.exists('token.json'):
+    #     creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    # # If there are no (valid) credentials available, let the user log in.
+    # if not creds or not creds.valid:
+    #     if creds and creds.expired and creds.refresh_token:
+    #         creds.refresh(Request())
+    #     else:
+    #         flow = InstalledAppFlow.from_client_secrets_file(
+    #             'credentials.json', SCOPES)
+    #         creds = flow.run_local_server(port=0)
+    #     # Save the credentials for the next run
+    #     with open('token.json', 'w') as token:
+    #         token.write(creds.to_json())
     try:
-        service = build('classroom', 'v1', credentials=creds)
+        # service = build('classroom', 'v1', credentials=creds)
+        service = service
         # Call the Classroom API
         course = {'name' : OurClass.CourseName, 'section': OurClass.CourseID, 'descriptionHeading' : "", 'description' : OurClass.Summary + OurClass.misc,'room' : OurClass.Room,  'ownerId' : 'me', 'courseState' : 'PROVISIONED'}
         #print(course)
+
         course = service.courses().create(body=course).execute() #Create course in api
         print(f"Course created:  {(course.get('name'), course.get('id'))}")
         return course

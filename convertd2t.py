@@ -1,6 +1,5 @@
 import docx2txt
-import sys
-import Read
+
 
 def convertDocToTxt(argv):
     filename = argv
@@ -30,7 +29,7 @@ def main(argv):
     #if len(sys.argv) != 2:
         #print("Usage: python script_name.py source_docx_file.docx")
         #sys.exit(1)
-    print(argv)
+
     return_txt(argv)
     return "syllabus.txt"
 

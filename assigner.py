@@ -6,6 +6,7 @@ import os
 #Other programs
 import Read 
 import menu
+import MenYou
 
 #Time libraries
 from datetime import datetime, time
@@ -38,7 +39,7 @@ def assigner(file_name):
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
     service = build('classroom', 'v1', credentials=creds)
-    course = menu.main(service)
+    course = MenYou.main(service)
     try:
         for assignment in syllabus.Assignments:      
             date_parts = [int(part) for part in assignment.Date.split('/')] 
