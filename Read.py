@@ -11,13 +11,13 @@ class Material:
         self.Name = Name
         self.Date = Date
 class Classroom:
-    def __init__(self, CourseName, CourseID, Room, Summary, Categories, Weight, Assignments, Materials, misc):
+    def __init__(self, CourseName, CourseID, Room, Summary, Assignments, Materials, misc):
         self.CourseName = CourseName
         self.CourseID = CourseID
         self.Room = Room
         self.Summary = Summary
-        self.Categories = Categories
-        self.Weight = Weight
+        #self.Categories = Categories
+        #self.Weight = Weight
         self.Assignments = Assignments
         self.Materials = Materials
         self.misc = misc
@@ -51,8 +51,8 @@ def CreateNotebook(file_path):
     Summary = ""
     CourseID = 0
     CourseName = ""
-    Categories = []
-    Weight = []
+    #Categories = []
+    #Weight = []
     Assignments = []
     Materials = []
     misc = ""
@@ -61,7 +61,7 @@ def CreateNotebook(file_path):
         isCourseName = re.search(patterns[0], lines[i])
         isCourseID = re.search(patterns[2], lines[i])
         isCourseSummary = re.search(patterns[3], lines[i])
-        isGradeCategories = re.search(patterns[4], lines[i])
+        #isGradeCategories = re.search(patterns[4], lines[i])
         isAssignments = re.search(patterns[5], lines[i])
         isMaterials = re.search(patterns[6], lines[i])
         isRoom = re.search(patterns[7], lines[i])
@@ -79,15 +79,15 @@ def CreateNotebook(file_path):
                     i -= 1
                     break
                 Summary += lines[i]
-        elif isGradeCategories:
-            for x in range(i, length-1):
-                i += 1
-                if isSomethingElse(lines[i]):
-                    i -= 1
-                    break
-                words = lines[i].split()
-                Categories.append(words[0])
-                Weight.append(words[1])
+        # elif isGradeCategories:
+        #     for x in range(i, length-1):
+        #         i += 1
+        #         if isSomethingElse(lines[i]):
+        #             i -= 1
+        #             break
+        #         words = lines[i].split()
+        #         Categories.append(words[0])
+        #         Weight.append(words[1])
         elif isAssignments:
             for x in range(i, length-1):
                 i += 1
@@ -107,12 +107,11 @@ def CreateNotebook(file_path):
             misc += lines[i]
         i += 1
 
-    NewClass = Classroom(CourseName, CourseID, Room, Summary, Categories, Weight, Assignments, Materials, misc)
+    NewClass = Classroom(CourseName, CourseID, Room, Summary, Assignments, Materials, misc)
     print(NewClass.CourseName)
     print(NewClass.CourseID)
     print(NewClass.Summary)
-    print(NewClass.Categories)
-    print(NewClass.Weight)
 
     print(NewClass.misc)
     return NewClass
+
