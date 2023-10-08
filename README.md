@@ -4,15 +4,25 @@ ClassroomFromSyllabus
 
 # Template
 Summary:
+
 SUMMARY GOES HERE
+
 AND HERE
+
 Course Name: COURSE NAME HERE
+
 Course ID: COURSE ID HERE
+
 Room: ROOM HERE
+
 Assignments:
+
 NAME(TYPE), DATE
+
 NAME(TYPE), DATE
+
 NAME(TYPE), DATE
+
 NAME(TYPE), DATE
 
 
