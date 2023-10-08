@@ -1,5 +1,5 @@
 import re
-import convertd2t
+import flask_app.convertd2t as convertd2t
 
 class Assignment:
     def __init__(self, Name, Type, Date,):

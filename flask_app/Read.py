@@ -1,5 +1,6 @@
 import re
 from pdfminer.high_level import extract_text
+import convertd2t
 
 class Assignment:
     def __init__(self, Name, Type, Date,):
@@ -41,7 +42,10 @@ def CreateNotebook(file_path):
             file.write(remove_spaces)
         file = open('uploads\converted_pdf.txt')
     elif file_path.endswith(('.docx')):
-        print('todo:docx')
+        print("Converting DOCX to TXT...")
+        convertd2t.main(file_path)
+        print("Converted.")
+        file = open('uploads/converted_docx.txt')
     elif not file_path.endswith('.txt'):
         print("what are you")
     else: file = open(file_path)
