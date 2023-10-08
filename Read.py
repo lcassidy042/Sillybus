@@ -6,12 +6,12 @@ class Assignment:
         self.Type = Type
         self.Date = Date
 
-class Material:
-    def __init__(self, Name, Date):
-        self.Name = Name
-        self.Date = Date
+# class Material:
+#     def __init__(self, Name, Date):
+#         self.Name = Name
+#         self.Date = Date
 class Classroom:
-    def __init__(self, CourseName, CourseID, Room, Summary, Assignments, Materials, misc):
+    def __init__(self, CourseName, CourseID, Room, Summary, Assignments, misc):
         self.CourseName = CourseName
         self.CourseID = CourseID
         self.Room = Room
@@ -19,7 +19,7 @@ class Classroom:
         #self.Categories = Categories
         #self.Weight = Weight
         self.Assignments = Assignments
-        self.Materials = Materials
+        #self.Materials = Materials
         self.misc = misc
 def isSomethingElse(line):
     for pattern in patterns:
@@ -54,7 +54,7 @@ def CreateNotebook(file_path):
     #Categories = []
     #Weight = []
     Assignments = []
-    Materials = []
+    #Materials = []
     misc = ""
     Room = ""
     while i<length :
@@ -63,7 +63,7 @@ def CreateNotebook(file_path):
         isCourseSummary = re.search(patterns[3], lines[i])
         #isGradeCategories = re.search(patterns[4], lines[i])
         isAssignments = re.search(patterns[5], lines[i])
-        isMaterials = re.search(patterns[6], lines[i])
+        #isMaterials = re.search(patterns[6], lines[i])
         isRoom = re.search(patterns[7], lines[i])
 
         if isCourseID:
@@ -95,19 +95,19 @@ def CreateNotebook(file_path):
                     i -= 1
                     break
                 Assignments.append(Assignment((lines[i])[:lines[i].find('(')], (lines[i])[lines[i].find('(')+1: lines[i].find(')')], (lines[i])[lines[i].find(')')+3:]))
-        elif isMaterials:
-            for x in range(i, length - 1):
-                i += 1
-                if isSomethingElse(lines[i]):
-                    i -= 1
-                    break
-                words = lines[i].split(" ")
-                Materials.append(Material((lines[i])[:lines[i].find(words[len(words)-1])-2], (lines[i])[lines[i].find(words[len(words)-1]):]))
+        # elif isMaterials:
+        #     for x in range(i, length - 1):
+        #         i += 1
+        #         if isSomethingElse(lines[i]):
+        #             i -= 1
+        #             break
+        #         words = lines[i].split(" ")
+        #         Materials.append(Material((lines[i])[:lines[i].find(words[len(words)-1])-2], (lines[i])[lines[i].find(words[len(words)-1]):]))
         else:
             misc += lines[i]
         i += 1
 
-    NewClass = Classroom(CourseName, CourseID, Room, Summary, Assignments, Materials, misc)
+    NewClass = Classroom(CourseName, CourseID, Room, Summary, Assignments,misc)
     print(NewClass.CourseName)
     print(NewClass.CourseID)
     print(NewClass.Summary)
@@ -115,3 +115,4 @@ def CreateNotebook(file_path):
     print(NewClass.misc)
     return NewClass
 
+#CreateNotebook("Syllabi/Test.txt")
