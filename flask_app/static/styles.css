@@ -68,9 +68,15 @@ label {
     background-color: #0056b3;
 }
 
+.centered-image {
+    display: block;
+    margin: 0 auto;
+    padding: 0; /* Adjust the padding as needed */
+    max-width: 50%; /* Limit the maximum width of the image */
+}
+
 .input-field {
     width: 100%;
-    padding: 15px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;

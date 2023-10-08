@@ -1,6 +1,6 @@
 # app.py
 
-from flask import Flask, render_template, request, jsonify, redirect, url_for
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 import os
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -55,6 +55,7 @@ def process_file():
                 'Room': class_data.Room,
                 'Summary': class_data.Summary + class_data.misc,
             }
+            
             return jsonify(parsed_data)
         else:
             return jsonify({'error': 'Failed to parse the file.'}), 400
@@ -84,11 +85,11 @@ def create_class():
             }
             try:
                 course = service.courses().create(body=course).execute()
-                course_id = course.get('id')
+                course_id = course['id']
                 return redirect(url_for('display_assignments', course_id=course_id))
 
             except HttpError as error:
-                return f'An error occurred: {error}'
+                return f'An error occurred: {error.resp}'
 
     return redirect(url_for('index'))
 
@@ -107,8 +108,9 @@ def create_assignments():
     creds = get_credentials()
 
     course_id = request.args.get('course_id')
-
+    class_data = session.get('class_data', None)
     if request.method == 'POST':
+        
         service = build('classroom', 'v1', credentials=creds)
 
         try:
