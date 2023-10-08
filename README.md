@@ -1,6 +1,6 @@
 # Sillybus
 <div align="center">
-  <img src="https://github.com/lcassidy042/Sillybus/assets/133998249/a712e885-9584-47d8-989d-63baf00a8222" width="650" style="border: 2px solid black;">
+  <img src="https://github.com/lcassidy042/Sillybus/assets/133998249/a712e885-9584-47d8-989d-63baf00a8222" width="450">
 </div>
  <br><br>
 Sillybus is a tool for creating a Google Classroom from a PDF, TXT, or DOCX file of a Syllabus. This tool utilizes: Python+Flask, HTML, CSS, JavaScript and Google Cloud to make a teacher's life easier! 
