@@ -12,14 +12,14 @@ Course Name: COURSE NAME HERE<br>
 Course ID: COURSE ID HERE<br>
 Room: ROOM HERE<br>
 
-Assignments:
+Assignments: <br>
 NAME(TYPE), DATE<br>
 NAME(TYPE), DATE<br>
 NAME(TYPE), DATE<br>
 NAME(TYPE), DATE<br>
 
 
-MISCELLANEOUS<br>
+MISCELLANEOUS: <br>
 Email: DHHDHDH <br>
 Feel Free to Reach Out!
 
