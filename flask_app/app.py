@@ -85,7 +85,8 @@ def create_class():
             }
             try:
                 course = service.courses().create(body=course).execute()
-                return redirect(url_for('display_assignments'))
+                course_id = course.get('id')
+                return redirect(url_for('display_assignments', course_id=course_id))
 
             except HttpError as error:
                 return f'An error occurred: {error}'
@@ -95,35 +96,50 @@ def create_class():
 @app.route('/assignments', methods=['GET', 'POST'])
 def display_assignments():
     global class_data  # Access the global variable
+    course_id = request.args.get('course_id')
+
     global edited_assignments  # Access the global variable
+    
 
     if class_data is None:
         return redirect(url_for('index'))  # Redirect to the main page if no file has been uploaded
-
-    if request.method == 'POST':
-        # Update assignment values with user-edited values
-        for i, assignment in enumerate(class_data.Assignments):
-            assignment.Name = request.form.get(f'name_{i}')
-            assignment.Type = request.form.get(f'type_{i}')
-            assignment.Date = request.form.get(f'date_{i}')
-            edited_assignments[i] = assignment
-
-    assignments = edited_assignments if edited_assignments else class_data.Assignments
-    return render_template('assignments.html', assignments=assignments)
+    
+    assignments = class_data.Assignments
+    # if request.method == 'GET':
+    #     for i, assignment in enumerate(class_data.Assignments):
+    #         assignments.Name = class_data.Assignments[i].Name
+    #         assignment.Type = class_data.Assignments[i].Type
+    #         assignment.Date = class_data.Assignments[i].Date
+    #         assignments[i] = assignment
+        
+    return render_template('assignments.html', assignments=assignments, course_id = course_id )
 
 @app.route('/create_assignments', methods=['POST'])
 def create_assignments():
     creds = get_credentials()
 
-    if request.method == 'POST' and class_data:
+    global class_data
+    course_id = request.args.get('course_id')
+
+    if request.method == 'POST':
         service = build('classroom', 'v1', credentials=creds)
 
+        edited_assignments = class_data.Assignments
+        for i, assignment in enumerate(class_data.Assignments):
+            assignment.Name = request.form.get(f'name_{i}')
+            assignment.Type = request.form.get(f'type_{i}')
+            assignment.Date = request.form.get(f'date_{i}')
+            edited_assignments[i] = assignment
+        
+        print("we get to at least here")
         try:
+
             for assignment in edited_assignments:
+                
                 date_parts = [int(part) for part in assignment.Date.split('/')]
+                
                 coursework = {
                     'title': assignment.Name,
-                    'workType': 'ASSIGNMENT',
                     'state': 'PUBLISHED',
                     'dueDate': {
                         'year': date_parts[2],
@@ -137,14 +153,15 @@ def create_assignments():
                         'nanos': 0
                     }
                 }
-                coursework = service.courses().courseWork().create(courseId=class_data.CourseID, body=coursework).execute()
+                coursework = service.courses().courseWork().create(courseId=course_id, body=coursework).execute()
                 print(f"Assignment created with ID {coursework.get('id')}")
 
             return redirect(url_for('final_display'))
 
         except HttpError as error:
+            print ("error with creating assignments")
             return f'An error occurred: {error}'
-
+            
     return redirect(url_for('display_assignments'))
 
 @app.route('/final_display')
@@ -152,7 +169,7 @@ def final_display():
     global class_data
 
     if class_data:
-        return render_template('final_display.html', created_course=class_data)
+        return render_template('final_display.html', class_data)
 
     return redirect(url_for('index'))
 

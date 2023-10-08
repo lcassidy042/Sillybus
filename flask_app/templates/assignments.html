@@ -7,7 +7,7 @@
 <body>
     <div class="container">
         <h1>Assignments</h1>
-        <form method="POST" action="/create_assignments">
+        <form method="POST" action="{{ url_for('create_assignments', course_id=course_id) }}">
             <div class="assignment-columns">
                 {% for assignment in assignments %}
                 <div class="assignment">

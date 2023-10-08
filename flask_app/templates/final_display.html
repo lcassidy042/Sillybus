@@ -9,15 +9,15 @@
         <h1>Final Course Details</h1>
         <p>The course has been created with the following details:</p>
         <ul>
-            <li><strong>Course Name:</strong> {{ created_course.CourseName }}</li>
-            <li><strong>Section:</strong> {{ created_course.CourseID }}</li>
-            <li><strong>Room:</strong> {{ created_course.Room }}</li>
-            <li><strong>Description:</strong> {{ created_course.Summary }}</li>
+            <li><strong>Course Name:</strong> {{ class_data.CourseName }}</li>
+            <li><strong>Section:</strong> {{ class_data.CourseID }}</li>
+            <li><strong>Room:</strong> {{ class_data.Room }}</li>
+            <li><strong>Description:</strong> {{ class_data.Summary }}</li>
         </ul>
         
         <h2>Assignments:</h2>
         <ul>
-            {% for assignment in created_course.Assignments %}
+            {% for assignment in class_data.Assignments %}
                 <li>
                     <strong>Name:</strong> {{ assignment.Name }}<br>
                     <strong>Type:</strong> {{ assignment.Type }}<br>
