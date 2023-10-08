@@ -5,12 +5,10 @@ import os
 
 #Other programs
 import Read 
-import menu
-import MenYou
+
 
 #Time libraries
 from datetime import datetime, time
-import pytz 
 
 #Google API
 from googleapiclient.discovery import build
@@ -20,6 +18,7 @@ from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+
 SCOPES = ['https://www.googleapis.com/auth/classroom.courses', 'https://www.googleapis.com/auth/classroom.coursework.students']
 
 
@@ -38,9 +37,14 @@ def assigner(file_name):
         # Save the credentials for the next run
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
+
     service = build('classroom', 'v1', credentials=creds)
-    course = MenYou.main(service)
+    course = {'name' : syllabus.CourseName, 'section': syllabus.CourseID, 'descriptionHeading' : "", 'description' : syllabus.Summary + syllabus.misc,'room' : syllabus.Room,  'ownerId' : 'me', 'courseState' : 'PROVISIONED'}
+    
     try:
+
+        course = service.courses().create(body=course).execute() #Create course in api
+
         for assignment in syllabus.Assignments:      
             date_parts = [int(part) for part in assignment.Date.split('/')] 
             coursework = {
@@ -62,6 +66,7 @@ def assigner(file_name):
             coursework = service.courses().courseWork().create(courseId=course['id'], body=coursework).execute()
             print(f"Assignment created with ID {coursework.get('id')}")
         return coursework
+    
     except HttpError as error:
         print(f"An error occurred: {error}")
         return error
