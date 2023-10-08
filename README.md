@@ -20,7 +20,7 @@ NAME(TYPE), DATE<br>
 
 
 MISCELLANEOUS: <br>
-Email: DHHDHDH <br>
+Email: teacher@school.edu <br>
 Feel Free to Reach Out!
 
 # Parts of Your Syllabus:
