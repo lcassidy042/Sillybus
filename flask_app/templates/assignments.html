@@ -14,15 +14,15 @@
                     <h2>Assignment {{ loop.index }}</h2>
                     <div class="field">
                         <label for="name_{{ loop.index0 }}">Name:</label>
-                        <input type="text" id="name_{{ loop.index0 }}" name="name_{{ loop.index0 }}" value="{{ assignment.Name }}">
+                        <span>{{ assignment.Name }}</span>
                     </div>
                     <div class="field">
                         <label for="type_{{ loop.index0 }}">Type:</label>
-                        <input type="text" id="type_{{ loop.index0 }}" name="type_{{ loop.index0 }}" value="{{ assignment.Type }}">
+                        <span>{{ assignment.Type }}</span>
                     </div>
                     <div class="field">
                         <label for="date_{{ loop.index0 }}">Date:</label>
-                        <input type="text" id="date_{{ loop.index0 }}" name="date_{{ loop.index0 }}" value="{{ assignment.Date }}">
+                        <span>{{ assignment.Date }}</span>
                     </div>
                 </div>
                 {% endfor %}

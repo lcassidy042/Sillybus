@@ -89,7 +89,7 @@ def CreateNotebook(file_path):
             misc += lines[i]
         i += 1
 
-    NewClass = Classroom(CourseName, CourseID, Room, Summary, Assignments,misc)
+    NewClass = Classroom(CourseName, CourseID, Room, Summary, Assignments, misc)
     
     return NewClass, Assignments
 
