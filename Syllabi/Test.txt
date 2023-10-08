@@ -1,11 +1,12 @@
 Hey Class! This is your professor, Mrs. Muddled!
 I hope you guys are excited for our Class this semester.
 
-Course Name: Intro to Computer Science
-Course ID: 25
-
+Course Name: Intro to Computer Science!
+Course ID: Section 25
+Room: AB 255
 Summary:
 This course will introduce students to the fundamentals of programming.
+Enjoy!
 
 Email: hackrueducation@gmail.com
 

@@ -11,9 +11,10 @@ class Material:
         self.Name = Name
         self.Date = Date
 class Classroom:
-    def __init__(self, CourseName, CourseID, Summary, Categories, Weight, Assignments, Materials, misc):
+    def __init__(self, CourseName, CourseID, Room, Summary, Categories, Weight, Assignments, Materials, misc):
         self.CourseName = CourseName
         self.CourseID = CourseID
+        self.Room = Room
         self.Summary = Summary
         self.Categories = Categories
         self.Weight = Weight
@@ -28,7 +29,7 @@ def isSomethingElse(line):
             return True
     return False
 patterns = [r'Course Name:\s*(.*)', r'Syllabus\s*(.*)', r'Course ID:\s*(.*)', r'Summary:\s*(.*)',
-            r'Grade Categories:\s*(.*)', r'Assignments:\s*(.*)', r'Materials:\s*(.*)']
+            r'Grade Categories:\s*(.*)', r'Assignments:\s*(.*)', r'Materials:\s*(.*)', r'Room:\s*(.*)']
 
 
 def CreateNotebook(file_path):
@@ -52,6 +53,7 @@ def CreateNotebook(file_path):
     Assignments = []
     Materials = []
     misc = ""
+    Room = ""
     while i<length :
         isCourseName = re.search(patterns[0], lines[i])
         isCourseID = re.search(patterns[2], lines[i])
@@ -59,11 +61,14 @@ def CreateNotebook(file_path):
         isGradeCategories = re.search(patterns[4], lines[i])
         isAssignments = re.search(patterns[5], lines[i])
         isMaterials = re.search(patterns[6], lines[i])
+        isRoom = re.search(patterns[7], lines[i])
 
         if isCourseID:
             CourseID = isCourseID.group(1)
         elif isCourseName:
             CourseName = isCourseName.group(1)
+        elif isRoom:
+            Room = isRoom.group(1)
         elif isCourseSummary:
             for x in range (i, length-1):
                 i += 1
@@ -99,7 +104,7 @@ def CreateNotebook(file_path):
             misc += lines[i]
         i += 1
 
-    NewClass = Classroom(CourseName, CourseID, Summary, Categories, Weight, Assignments, Materials, misc)
+    NewClass = Classroom(CourseName, CourseID, Room, Summary, Categories, Weight, Assignments, Materials, misc)
     #print(NewClass.CourseName)
     #print(NewClass.CourseID)
     #print(NewClass.Summary)
