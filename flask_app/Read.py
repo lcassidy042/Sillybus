@@ -1,5 +1,8 @@
 import re
+<<<<<<< Updated upstream
 import convertd2t
+=======
+>>>>>>> Stashed changes
 
 class Assignment:
     def __init__(self, Name, Type, Date,):
@@ -7,21 +10,28 @@ class Assignment:
         self.Type = Type
         self.Date = Date
 
+<<<<<<< Updated upstream
 # class Material:
 #     def __init__(self, Name, Date):
 #         self.Name = Name
 #         self.Date = Date
 
+=======
+>>>>>>> Stashed changes
 class Classroom:
     def __init__(self, CourseName, CourseID, Room, Summary, Assignments, misc):
         self.CourseName = CourseName
         self.CourseID = CourseID
         self.Room = Room
         self.Summary = Summary
+<<<<<<< Updated upstream
         #self.Categories = Categories
         #self.Weight = Weight
         self.Assignments = Assignments
         #self.Materials = Materials
+=======
+        self.Assignments = Assignments
+>>>>>>> Stashed changes
         self.misc = misc
 
 def isSomethingElse(line):
@@ -39,9 +49,13 @@ def CreateNotebook(file_path):
         print("need to convert")
         return
     elif file_path.endswith(('.docx')):
+<<<<<<< Updated upstream
         print("Converting DOCX to TXT...")
         file_path = convertd2t.main(file_path)
         print("converted")
+=======
+        print("need to convert")
+>>>>>>> Stashed changes
         file = open(file_path)
 
     elif not file_path.endswith('.txt'):
@@ -53,19 +67,27 @@ def CreateNotebook(file_path):
     Summary = ""
     CourseID = 0
     CourseName = ""
+<<<<<<< Updated upstream
     #Categories = []
     #Weight = []
     Assignments = []
     #Materials = []
+=======
+    Assignments = []
+>>>>>>> Stashed changes
     misc = ""
     Room = ""
     while i<length :
         isCourseName = re.search(patterns[0], lines[i])
         isCourseID = re.search(patterns[2], lines[i])
         isCourseSummary = re.search(patterns[3], lines[i])
+<<<<<<< Updated upstream
         #isGradeCategories = re.search(patterns[4], lines[i])
         isAssignments = re.search(patterns[5], lines[i])
         #isMaterials = re.search(patterns[6], lines[i])
+=======
+        isAssignments = re.search(patterns[5], lines[i])
+>>>>>>> Stashed changes
         isRoom = re.search(patterns[7], lines[i])
 
         if isCourseID:
@@ -81,6 +103,7 @@ def CreateNotebook(file_path):
                     i -= 1
                     break
                 Summary += lines[i]
+<<<<<<< Updated upstream
         # elif isGradeCategories:
         #     for x in range(i, length-1):
         #         i += 1
@@ -90,6 +113,8 @@ def CreateNotebook(file_path):
         #         words = lines[i].split()
         #         Categories.append(words[0])
         #         Weight.append(words[1])
+=======
+>>>>>>> Stashed changes
         elif isAssignments:
             for x in range(i, length-1):
                 i += 1
@@ -97,6 +122,7 @@ def CreateNotebook(file_path):
                     i -= 1
                     break
                 Assignments.append(Assignment((lines[i])[:lines[i].find('(')], (lines[i])[lines[i].find('(')+1: lines[i].find(')')], (lines[i])[lines[i].find(')')+3:]))
+<<<<<<< Updated upstream
         # elif isMaterials:
         #     for x in range(i, length - 1):
         #         i += 1
@@ -105,12 +131,15 @@ def CreateNotebook(file_path):
         #             break
         #         words = lines[i].split(" ")
         #         Materials.append(Material((lines[i])[:lines[i].find(words[len(words)-1])-2], (lines[i])[lines[i].find(words[len(words)-1]):]))
+=======
+>>>>>>> Stashed changes
         else:
             misc += lines[i]
         i += 1
 
     NewClass = Classroom(CourseName, CourseID, Room, Summary, Assignments,misc)
     
+<<<<<<< Updated upstream
     # print(NewClass.CourseName)
     # print(NewClass.CourseID)
     # print(NewClass.Summary)
@@ -119,3 +148,7 @@ def CreateNotebook(file_path):
     return NewClass
 
 #CreateNotebook("Syllabi/Test.txt")
+=======
+    return NewClass, Assignments
+
+>>>>>>> Stashed changes

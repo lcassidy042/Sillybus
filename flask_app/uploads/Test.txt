@@ -1,0 +1,30 @@
+Hey Class! This is your professor, Mrs. Muddled!
+I hope you guys are excited for our Class this semester.
+
+Course Name: Intro to Computer Science!
+Course ID: Section 25
+=======
+Course Name: 4 am test
+Course ID: Section 69
+>>>>>>> Stashed changes
+Room: AB 255
+Summary:
+This course will introduce students to the fundamentals of programming.
+Enjoy!
+
+Email: hackrueducation@gmail.com
+
+Materials:
+Textbook(Chapter 111), 9/23/23
+Textbook(All), 10/20
+
+Grade Categories:
+Quiz 25%
+Test 50%
+Homework 25%
+
+Assignments:
+Quiz 1(Quiz), 10/12/2023
+Quiz 2(Quiz), 10/11/2023
+Exam 1(Test), 10/30/2023
+Homework 1(Homework), 11/23/2023

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final Course Details</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Final Course Details</h1>
+        <p>The course has been created with the following details:</p>
+        <ul>
+            <li><strong>Course Name:</strong> {{ created_course.CourseName }}</li>
+            <li><strong>Section:</strong> {{ created_course.CourseID }}</li>
+            <li><strong>Room:</strong> {{ created_course.Room }}</li>
+            <li><strong>Description:</strong> {{ created_course.Summary }}</li>
+        </ul>
+        
+        <h2>Assignments:</h2>
+        <ul>
+            {% for assignment in created_course.Assignments %}
+                <li>
+                    <strong>Name:</strong> {{ assignment.Name }}<br>
+                    <strong>Type:</strong> {{ assignment.Type }}<br>
+                    <strong>Date:</strong> {{ assignment.Date }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <p>Assignments have been created successfully.</p>
+    </div>
+</body>
+</html>

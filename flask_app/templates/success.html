@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class Created</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Class Created Successfully</h1>
+        <p>The class has been created with the following details:</p>
+        <ul>
+            <li><strong>Course Name:</strong> {{ created_course.name }}</li>
+            <li><strong>Section:</strong> {{ created_course.section }}</li>
+            <li><strong>Room:</strong> {{ created_course.room }}</li>
+            <li><strong>Description:</strong> {{ created_course.description }}</li>
+        </ul>
+        <p>You can now proceed with other actions.</p>
+        <a href="/assignments">View Assignments</a>
+    </div>
+</body>
+</html>
