@@ -1,33 +1,20 @@
-<<<<<<< Updated upstream
-from flask import Flask, render_template, request, jsonify
-import os.path
-=======
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import os
->>>>>>> Stashed changes
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-<<<<<<< Updated upstream
-import Read  # Import your other Python script as a module
-=======
 import Read
->>>>>>> Stashed changes
 
 app = Flask(__name__)
 
 # If modifying these scopes, delete the file token.json.
-<<<<<<< Updated upstream
-SCOPES = ['https://www.googleapis.com/auth/classroom.courses']
-=======
 SCOPES = ['https://www.googleapis.com/auth/classroom.courses', 'https://www.googleapis.com/auth/classroom.coursework.students']
 
 # Initialize a variable to hold the parsed data and assignments
 class_data = None
 edited_assignments = []
->>>>>>> Stashed changes
 
 def get_credentials():
     creds = None
@@ -55,21 +42,6 @@ def process_file():
         file_path = os.path.join(os.getcwd(), "uploads", uploaded_file.filename)
         uploaded_file.save(file_path)
 
-<<<<<<< Updated upstream
-        # Call the CreateNotebook function from read.py to parse the file
-        OurClass = Read.CreateNotebook(file_path)
-
-        if OurClass:
-            # Prepare a dictionary with the parsed data
-            parsed_data = {
-                'CourseName': OurClass.CourseName,
-                'CourseID': OurClass.CourseID,
-                'Room': OurClass.Room,
-                'Summary': OurClass.Summary + OurClass.misc,
-                # Add other parsed fields here
-            }
-
-=======
         global class_data  # Make class_data a global variable
         global edited_assignments  # Make edited_assignments a global variable
         class_data, edited_assignments = Read.CreateNotebook(file_path)
@@ -81,40 +53,12 @@ def process_file():
                 'Room': class_data.Room,
                 'Summary': class_data.Summary + class_data.misc,
             }
->>>>>>> Stashed changes
             return jsonify(parsed_data)
         else:
             return jsonify({'error': 'Failed to parse the file.'}), 400
     else:
         return jsonify({'error': 'No file uploaded.'}), 400
 
-<<<<<<< Updated upstream
-@app.route('/create_course', methods=['GET', 'POST'])
-def create_course():
-    creds = get_credentials()
-    service = build('classroom', 'v1', credentials=creds)
-
-    if request.method == 'POST':
-        # Handle the form submission as before
-        course = {
-            'name': request.form['name'],
-            'section': request.form['section'],
-            'description': request.form['description'],
-            'room': request.form['room'],
-            'ownerId': 'me',
-            'courseState': 'PROVISIONED'
-        }
-
-        try:
-            course = service.courses().create(body=course).execute()
-            return f'Course created: {(course.get("name"), course.get("id"))}'
-        except HttpError as error:
-            return f'An error occurred: {error}'
-
-    # Render the template without autofilled values
-    return render_template('create_course.html')
-
-=======
 @app.route('/create_course', methods=['POST'])
 def create_class():
     creds = get_credentials()
@@ -209,7 +153,6 @@ def final_display():
         return render_template('final_display.html', created_course=class_data)
 
     return redirect(url_for('index'))
->>>>>>> Stashed changes
 
 if __name__ == '__main__':
     app.run(debug=True)

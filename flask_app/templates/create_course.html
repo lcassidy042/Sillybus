@@ -2,15 +2,10 @@
 <html>
 <head>
     <title>Create Course</title>
-<<<<<<< Updated upstream
-</head>
-<body>
-=======
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
 <body>
     <div class="container">
->>>>>>> Stashed changes
     <h1>Create a New Course</h1>
     <form action="/create_course" method="POST" enctype="multipart/form-data">
         <label for="name">Course Name:</label>
@@ -28,16 +23,9 @@
         <label for="file">Upload File:</label>
         <input type="file" id="file" name="file" onchange="uploadFile()"><br>
 
-<<<<<<< Updated upstream
-        <input type="submit" value="Create Course">
-    </form>
-
-    <!-- JavaScript to trigger file upload and process file -->
-=======
         <input type="submit" value="Create Class">
     </form>
     </div>
->>>>>>> Stashed changes
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function uploadFile() {
@@ -46,32 +34,17 @@
             if (file) {
                 const formData = new FormData();
                 formData.append('file', file);
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
                 $.ajax({
                     type: 'POST',
                     url: '/process_file',
                     data: formData,
                     processData: false,
-<<<<<<< Updated upstream
-                    contentType: false,
-                    success: function(data) {
-                        // Fill the form fields with parsed data
-                        $('#name').val(data.CourseName);
-                        $('#section').val(data.CourseID);
-                        $('#room').val(data.Room);
-                        $('#description').val(data.Summary);
-                        // Fill other form fields as needed
-=======
                     contentType: false,  // Set content type to false to prevent auto-JSON conversion
                     success: function(data) {
                         document.getElementById('name').value = data.CourseName;
                         document.getElementById('section').value = data.CourseID;
                         document.getElementById('room').value = data.Room;
                         document.getElementById('description').value = data.Summary;
->>>>>>> Stashed changes
                     },
                     error: function() {
                         alert('An error occurred while processing the file.');
