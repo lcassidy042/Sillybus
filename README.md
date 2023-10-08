@@ -5,7 +5,7 @@
  <br><br>
 Sillybus (🤪) is a tool for creating a Google Classroom from a PDF, TXT, or DOCX file of a Syllabus. This tool utilizes: Python+Flask, HTML, CSS, JavaScript and Google Cloud to make a teacher's life easier! 
 
-# Directions (For File Upload/Input):
+# Directions (For File Upload/Input) 🗞:
 * Please ensure that the file being uploaded is of type TXT, DOCX, or PDF.
 
 # Template 📑:
@@ -21,7 +21,6 @@ NAME(TYPE), DATE<br>
 NAME(TYPE), DATE<br>
 NAME(TYPE), DATE<br>
 NAME(TYPE), DATE<br>
-
 
 MISCELLANEOUS: <br>
 Email: teacher@school.edu <br>
