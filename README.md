@@ -6,7 +6,7 @@ ClassroomFromSyllabus
 
 # Parts of Your Syllabus:
 <ins>"Summary:"<ins>
-*
+*This will be the summary of your course
 <ins>"Course Name:"<ins>
 *
 <ins>"Course ID:"<ins>
