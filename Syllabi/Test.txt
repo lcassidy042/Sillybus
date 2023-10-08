@@ -20,7 +20,7 @@ Test 50%
 Homework 25%
 
 Assignments:
-Quiz 1(Quiz), 9/10/23
-Quiz 2(Quiz), 9/30/23
-Exam 1(Test), 10/5/23
-Homework 1(Homework), 11/23/23
+Quiz 1(Quiz), 10/12/2023
+Quiz 2(Quiz), 10/11/2023
+Exam 1(Test), 10/30/2023
+Homework 1(Homework), 11/23/2023

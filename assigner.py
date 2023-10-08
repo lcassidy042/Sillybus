@@ -1,14 +1,17 @@
 from __future__ import print_function
+#Standard library
 import sys
 import os
-import Read 
 
+#Other programs
+import Read 
 import menu
+
+#Time libraries
+from datetime import datetime, time
+import pytz 
+
 #Google API
-from google.type import date_pb2
-from google.type import timeofday_pb2
-import google.auth
-import json
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from google.oauth2.credentials import Credentials
@@ -18,7 +21,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 SCOPES = ['https://www.googleapis.com/auth/classroom.courses', 'https://www.googleapis.com/auth/classroom.coursework.students']
 
-# pylint: disable=maybe-no-member
+
 def assigner(file_name):
     syllabus = Read.CreateNotebook(file_name) 
     creds = None
@@ -38,47 +41,22 @@ def assigner(file_name):
     course = menu.main(service)
     try:
         for assignment in syllabus.Assignments:      
-            #split date here  
-            # Parse the input date string into a datetime object
-            # print(assignment.Date)
-            # date_object = date_pb2.Date()
-            # date_parts = [int(part) for part in assignment.Date.split('/')] 
-            # date_object.year = date_parts[2]  # Set the year
-            # date_object.month = date_parts[0]    # Set the month
-            # date_object.day = date_parts[1]
-            # print(date_object)
-            # timeOfDay = timeofday_pb2.TimeOfDay()
-            # timeOfDay.hours = 23
-            # timeOfDay.minutes = 59
-            # timeOfDay.seconds = 0
-            # timeOfDay.seconds = 0
-            date_object = date_pb2.Date()
-            message
-            date_object.year = 2023  # Set the year
-            date_object.month = 10    # Set the month
-            date_object.day = 7       # Set the day
-
-            # Convert google.type.Date to dictionary
-            date_dict = {
-                "year": date_object.year,
-                "month": date_object.month,
-                "day": date_object.day
-            }
-
-            # Serialize the dictionary to JSON
-            json_data = json.dumps(date_dict)
-            time_of_day = {
-                "hours": 23,
-                "minutes": 59,
-                "seconds": 0,
-                "nanos": 0
-            }
+            date_parts = [int(part) for part in assignment.Date.split('/')] 
             coursework = {
                 'title': assignment.Name,
                 'workType': 'ASSIGNMENT',
                 'state': 'PUBLISHED',
-                'dueDate': json_data,
-                'dueTime': json.dumps(time_of_day),
+                'dueDate':{
+                    'year': date_parts[2],
+                    'month': date_parts[0],
+                    'day': date_parts[1]
+                },
+                'dueTime':{ #Midnight EST converted to UTC, daylight savings is not accounted for
+                    'hours': 3,
+                    'minutes': 59,
+                    'seconds': 0,
+                    'nanos': 0
+                }
             }
             coursework = service.courses().courseWork().create(courseId=course['id'], body=coursework).execute()
             print(f"Assignment created with ID {coursework.get('id')}")
