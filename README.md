@@ -5,8 +5,18 @@
  <br><br>
 Sillybus (🤪) is a tool for creating a Google Classroom from a PDF, TXT, or DOCX file of a Syllabus. This tool utilizes: Python+Flask, HTML, CSS, JavaScript and Google Cloud to make a teacher's life easier! 
 
+# How to Run 🏃:
+1. Install Python dependency packages using the command ```pip install Flask pdfminer.six google-api-python-client google-auth-httplib2 google-auth-oauthlib docx2txt jsonify``` in Command Prompt/Terminal.
+2. Create a Google Cloud project.
+3. Create an OAuth Client_ID with classroom API scopes ```classroom.courses``` and ```classroom.coursework.students```.
+4. Add authorized users' Google accounts' emails in the process of creating the OAuth Client_ID.
+5. Download the OAuth Client_ID as a JSON file and rename it to credentials.json. Add it to the root folder (i.e. Sillybus/credentials.json).
+6. Run flask_app/app.py locally. Click on the IP address listed in the output to view the GUI webapp. Sample files are available in the subfolder Sillybus/Syllabi. 
+
 # Directions (For File Upload/Input) 🗞:
 * Please ensure that the file being uploaded is of type TXT, DOCX, or PDF.
+* Date should be in MM/DD/YYYY format.
+* Dates should be in the future.
 
 # Template 📑:
 Summary:<br>
