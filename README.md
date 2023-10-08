@@ -5,31 +5,22 @@ ClassroomFromSyllabus
 * Please ensure that the file being uploaded is of type TXT, DOCX, or PDF.
 
 # Template
-Summary:
-
-SUMMARY GOES HERE
-
-AND HERE
-
-Course Name: COURSE NAME HERE
-
-Course ID: COURSE ID HERE
-
-Room: ROOM HERE
+Summary:<br>
+SUMMARY GOES HERE<br>
+AND HERE<br>
+Course Name: COURSE NAME HERE<br>
+Course ID: COURSE ID HERE<br>
+Room: ROOM HERE<br>
 
 Assignments:
-
-NAME(TYPE), DATE
-
-NAME(TYPE), DATE
-
-NAME(TYPE), DATE
-
-NAME(TYPE), DATE
+NAME(TYPE), DATE<br>
+NAME(TYPE), DATE<br>
+NAME(TYPE), DATE<br>
+NAME(TYPE), DATE<br>
 
 
 MISCELLANEOUS
-Email: DHHDHDH
+Email: DHHDHDH <br> 
 Feel Free to Reach Out!
 
 # Parts of Your Syllabus:
