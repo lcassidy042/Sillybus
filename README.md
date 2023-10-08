@@ -4,7 +4,7 @@ ClassroomFromSyllabus
 
 # Template
 
-# Parts of Your:
+# Parts of Your Syllabus:
 <ins>"Summary:"<ins>
 
 <ins>"Course Name:"<ins>
