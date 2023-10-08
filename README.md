@@ -16,4 +16,6 @@ Room
 Assignments:
 * This will be the assignments of your course. Type "Assignments," then hit space and type the name of your course as you would like it to appear. This does not need to be an integer and will display however you type it. <br><br>
 Miscellaneous:
-* This is not a particular category, but it will catch all other text in your syllabi and add it to the end of the description. 
+* This is not a particular category, but it will catch all other text in your syllabi and add it to the end of the description. This could include email or any other contact information.
+
+
