@@ -39,7 +39,9 @@ def process_file():
     uploaded_file = request.files.get('file')
 
     if uploaded_file:
-        file_path = os.path.join(os.getcwd(), "uploads", uploaded_file.filename)
+        upload_folder = os.path.join(os.getcwd(), "uploads")
+        os.makedirs(upload_folder, exist_ok=True)  # This line creates the directory if it doesn't exist
+        file_path = os.path.join(upload_folder, uploaded_file.filename)        
         uploaded_file.save(file_path)
 
         global class_data  # Make class_data a global variable
