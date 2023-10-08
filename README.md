@@ -6,7 +6,7 @@ ClassroomFromSyllabus
 
 # Parts of Your Syllabus:
 Summary:
-* This will be the summary of your course. Type "Summary:" then indent and type your summary on the following lines. It can be more than one line. <br><br>
+* This will be the summary of your course. Type "Summary:" then indent and type your summary on the following lines. It can be more than one line. 
 Course Name:
 * This will be the name of your course. Type "Course Name:," then hit space and type the name of your course as you would like it to appear. <br><br>
 Course ID:
