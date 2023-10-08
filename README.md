@@ -5,7 +5,7 @@ ClassroomFromSyllabus
 # Template
 
 # Parts of Your Syllabus:
-<ins>"Summary:"<ins>
+"Summary:"
 *This will be the summary of your course. Type "Summary:" then indent and type your summary on the following lines. It can be more than one line.
 <ins>"Course Name:"<ins>
 *This will be the name of your course. Type "Course Name:," then hit space and type the name of your course as you would like it to appear.
