@@ -1,5 +1,6 @@
 from __future__ import print_function
 import sys
+import os
 import Read 
 import menu
 #Google API
@@ -7,15 +8,20 @@ import menu
 import google.auth
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from google.oauth2.credentials import Credentials
+SCOPES = ['https://www.googleapis.com/auth/classroom.courses']
+
+
 
 # pylint: disable=maybe-no-member
 def assigner(file_name):
     syllabus = Read.CreateNotebook(file_name) 
-    course = menu.main()
-    creds, _ = google.auth.default()
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    course = menu.main(creds)
     try:
         service = build('classroom', 'v1', credentials=creds)
-        for assignment in syllabus.assignments:      
+        for assignment in syllabus.Assignments:      
             #split date here  
             date_parts = [int(part) for part in assignment.Date.split('/')] 
             coursework = {
