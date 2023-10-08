@@ -1,12 +1,8 @@
 Hey Class! This is your professor, Mrs. Muddled!
 I hope you guys are excited for our Class this semester.
 
-Course Name: Intro to Computer Science!
+Course Name: 12 am test
 Course ID: Section 25
-=======
-Course Name: 4 am test
-Course ID: Section 69
->>>>>>> Stashed changes
 Room: AB 255
 Summary:
 This course will introduce students to the fundamentals of programming.
