@@ -19,7 +19,7 @@ NAME(TYPE), DATE<br><br>
 NAME(TYPE), DATE<br><br>
 
 
-MISCELLANEOUS
+MISCELLANEOUS<br>
 Email: DHHDHDH <br><br>
 Feel Free to Reach Out!
 
