@@ -1,5 +1,5 @@
 import re
-
+import convertd2t
 class Assignment:
     def __init__(self, Name, Type, Date,):
         self.Name = Name
@@ -37,8 +37,11 @@ def CreateNotebook(file_path):
         print("need to convert")
         return
     elif file_path.endswith(('.docx')):
-        print("need to convert")
-        return
+        print("Converting DOCX to TXT...")
+        file_path = convertd2t.main(file_path)
+        print("converted")
+        file = open(file_path)
+
     elif not file_path.endswith('.txt'):
         print("what are you")
     else: file = open(file_path)
@@ -105,15 +108,11 @@ def CreateNotebook(file_path):
         i += 1
 
     NewClass = Classroom(CourseName, CourseID, Room, Summary, Categories, Weight, Assignments, Materials, misc)
-    #print(NewClass.CourseName)
-    #print(NewClass.CourseID)
-    #print(NewClass.Summary)
-    #print(NewClass.Categories)
-    #print(NewClass.Weight)
-    #print(NewClass.AssignmentName)
-    #print(NewClass.AssignmentType)
-    #print(NewClass.AssignmentDate)
-    #print(NewClass.misc)
-    return NewClass
+    print(NewClass.CourseName)
+    print(NewClass.CourseID)
+    print(NewClass.Summary)
+    print(NewClass.Categories)
+    print(NewClass.Weight)
 
-CreateNotebook("Syllabi/Test.txt")
+    print(NewClass.misc)
+    return NewClass
