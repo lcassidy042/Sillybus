@@ -1,6 +1,8 @@
 # ClassroomFromSyllabus
 ClassroomFromSyllabus
 
+# Directions (For File Upload/Input)
+* Please ensure that the file being uploaded is of type TXT, DOCX, or PDF.
 
 # Template
 Summary:
