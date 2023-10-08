@@ -1,4 +1,6 @@
 # Sillybus
+![sillybus(1)](https://github.com/lcassidy042/Sillybus/assets/133998249/a712e885-9584-47d8-989d-63baf00a8222) <br><br>
+Sillybus is a tool for creating a Google Classroom from a PDF, TXT, or DOCX file of a Syllabus. This tool utilizes: Python+Flask, HTML, CSS, JavaScript and Google Cloud to make a teacher's life easier! 
 
 # Directions (For File Upload/Input)
 * Please ensure that the file being uploaded is of type TXT, DOCX, or PDF.
