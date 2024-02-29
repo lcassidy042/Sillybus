@@ -1,0 +1,26 @@
+Hello to my new class! This is your professor, Mr. Plato!
+I really hope you guys are excited for our Class this semester.
+
+Course Name: Calculus II
+Course ID: Section 12
+Room: AB 2255
+Summary:
+This course will introduce students to the fundamentals of integrals.
+Enjoy!
+
+Email: hackrueducation@gmail.com
+
+Materials:
+Textbook(Chapter 111), 9/23/23
+Textbook(All), 10/20
+
+Grade Categories:
+Quiz 25%
+Test 50%
+Homework 25%
+
+Assignments:
+Quiz 1(Quiz), 10/12/2023
+Quiz 2(Quiz), 10/11/2023
+Exam 1(Test), 10/30/2023
+Homework 1(Homework), 11/23/2023

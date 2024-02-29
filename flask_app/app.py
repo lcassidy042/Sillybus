@@ -1,5 +1,3 @@
-# app.py
-
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 import os
 from google.auth.transport.requests import Request
@@ -103,6 +101,8 @@ def display_assignments():
     assignments = class_data.Assignments
     return render_template('assignments.html', assignments=assignments, course_id=course_id)
 
+
+## when u fix this bug, u better add some beautiful css and loading bar and confetti upon assignment creation
 @app.route('/create_assignments', methods=['POST'])
 def create_assignments():
     creds = get_credentials()
